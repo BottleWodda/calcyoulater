@@ -20,7 +20,7 @@
     background-color: rgb(8, 98, 126);
 }
 
-.display {
+#display {
     padding: 10px;
     font-size: 3em;
     display: flex;

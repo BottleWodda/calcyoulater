@@ -1,19 +1,39 @@
-const addition = (...numbers) => numbers.reduce((a, b) => a + b);
-console.log(addition(1, 2, 3, 4, 5));
-console.log(addition(1));
-console.log(addition(1, 2, 3));
+const add = (...num) => num.reduce((a, b) => (a + b));
 
-function subtraction() {
-    
+const subtract = (...num) => num.reduce((a, b) => (a - b));
+
+const multiply = (...num) => num.reduce((a, b) => (a * b));
+
+const divide = (...num) => num.reduce((a, b) => (a / b));
+
+const displayValue = '';
+
+function operate(...num) {
+    const operator = ['+', '-', '*', '/'];
+
+    if (operator == '+') {
+        return add(...num);
+    } else if (operator == '-') {
+        return subtract(...num);
+    } else if (operator == '*') {
+        return multiply(...num);
+    } else {
+        return divide(...num);
+    }
 }
 
-function multiplication() {
-    
-}
+const buttons = document.querySelectorAll('button');
 
-function division() {
-    
-}
+
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        operate(...num = button.id);
+        document.getElementById('display').innerHTML = button.id;
+    })
+});
+
+
+console.log(operate(12 + 7 - 5 * 3))
 
 function clear() {
 
