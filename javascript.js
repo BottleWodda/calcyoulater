@@ -1,40 +1,65 @@
-const add = (...num) => num.reduce((a, b) => (a + b));
+//Variables
+const numberButtons = document.querySelectorAll('.number');
+const operatorButtons = document.querySelectorAll('.operator');
+const equalsButton = document.querySelector('.equals');
+const clear = document.querySelector('.clear');
+let displayValue;
+let operatore;
+let firstOperand;
+let secondOperand; //need to figure out how to store next click as second operand
+let result;
 
-const subtract = (...num) => num.reduce((a, b) => (a - b));
-
-const multiply = (...num) => num.reduce((a, b) => (a * b));
-
-const divide = (...num) => num.reduce((a, b) => (a / b));
-
-const displayValue = '';
-
-function operate(...num) {
-    const operator = ['+', '-', '*', '/'];
-
+//Operation functions
+function add(num1, num2) {
+    parseFloat(num1);
+    parseFloat(num2);
+    return num1 + num2;
+}
+//
+function subtract(num1, num2) {
+    return num1 - num2;
+}
+//
+function multiply(num1, num2) {
+    return num1 * num2;
+}
+//
+function divide(num1, num2) {
+    return num1 / num2;
+}
+//
+function operate(num1, operator, num2) {
+    operator = operatore;
+    num1 = firstOperand;
+    num2 = secondOperand;
     if (operator == '+') {
-        return add(...num);
+        return add(num1, num2);
     } else if (operator == '-') {
-        return subtract(...num);
+        return subtract(num1, num2);
     } else if (operator == '*') {
-        return multiply(...num);
+        return multiply(num1, num2);
     } else {
-        return divide(...num);
+        return divide(num1, num2);
     }
 }
 
-const buttons = document.querySelectorAll('button');
-
-
-buttons.forEach((button) => {
+//Button events
+numberButtons.forEach((button) => {
     button.addEventListener('click', () => {
-        operate(...num = button.id);
-        document.getElementById('display').innerHTML = button.id;
+        document.querySelector('.display').innerHTML = button.value;
+        firstOperand = parseFloat(button.value);
+        console.log(firstOperand);
     })
 });
+//
+operatorButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        document.querySelector('.display').innerHTML = button.value;
+        operatore = button.value;
+        console.log(operatore);
+    })
+});
+//
+equalsButton.addEventListener('click', () => {console.log(operate())});
 
 
-console.log(operate(12 + 7 - 5 * 3))
-
-function clear() {
-
-}
