@@ -4,9 +4,9 @@ const operatorButtons = document.querySelectorAll('.operator');
 const equalsButton = document.querySelector('.equals');
 const clear = document.querySelector('.clear');
 let displayValue;
-let operatore;
+let operation;
 let firstOperand;
-let secondOperand; //need to figure out how to store next click as second operand
+let secondOperand = 2; //need to figure out how to store next click as second operand
 let result;
 
 //Operation functions
@@ -29,7 +29,7 @@ function divide(num1, num2) {
 }
 //
 function operate(num1, operator, num2) {
-    operator = operatore;
+    operator = operation;
     num1 = firstOperand;
     num2 = secondOperand;
     if (operator == '+') {
@@ -55,11 +55,12 @@ numberButtons.forEach((button) => {
 operatorButtons.forEach((button) => {
     button.addEventListener('click', () => {
         document.querySelector('.display').innerHTML = button.value;
-        operatore = button.value;
-        console.log(operatore);
+        operation = button.value;
+        console.log(operation);
     })
 });
 //
 equalsButton.addEventListener('click', () => {console.log(operate())});
 
 
+//test
