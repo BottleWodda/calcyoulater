@@ -8,45 +8,33 @@ const upperDisplay = document.querySelector('.upperDisplay');
 //
 let displayValue;
 let operation = null;
-let firstOperand;
-let secondOperand;
+let firstOperand = [];
+let firstNumber;
+let secondOperand = [];
+let secondNumber;
 let result;
 
 //Operation functions
 function add(num1, num2) {
-    num1 = firstOperand;
-    num2 = secondOperand;
-    parseFloat(num1);
-    parseFloat(num2);
-    console.log('add');
-    return num1 + num2;
+    return +num1 + +num2;
 }
 //
 function subtract(num1, num2) {
-    num1 = firstOperand;
-    num2 = secondOperand;
-    console.log('subtract');
     return num1 - num2;
 }
 //
 function multiply(num1, num2) {
-    num1 = firstOperand;
-    num2 = secondOperand;
-    console.log('multiply');
     return num1 * num2;
 }
 //
 function divide(num1, num2) {
-    num1 = firstOperand;
-    num2 = secondOperand;
-    console.log('divide');
     return num1 / num2;
 }
 //
 function operate(num1, operator, num2) {
     operator = operation;
-    num1 = firstOperand;
-    num2 = secondOperand;
+    num1 = firstNumber;
+    num2 = secondNumber;
     if (operator == '+') {
         return result = add(num1, num2);
     } else if (operator == '-') {
@@ -62,12 +50,14 @@ function operate(num1, operator, num2) {
 numberButtons.forEach((button) => {
     button.addEventListener('click', () => {
         if (operation !== null) {
-            secondOperand = secondOperand += button.value;
-            display.innerHTML = secondOperand;
+            secondOperand.push(button.value);
+            secondNumber = secondOperand.join('');
+            display.innerHTML = secondNumber;
             console.log(secondOperand);
         } else {
-            firstOperand = firstOperand += button.value;
-            display.innerHTML = firstOperand;
+            firstOperand.push(button.value);
+            firstNumber = firstOperand.join('');
+            display.innerHTML = firstNumber;
             console.log(firstOperand)
         };
     })
