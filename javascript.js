@@ -80,5 +80,8 @@ equalsButton.addEventListener('click', () => {
 clear.addEventListener('click', () => {
     display.innerHTML = '0';
     upperDisplay.innerHTML = '0';
+    operation = null;
+    firstOperand.length = 0;
+    secondOperand.length = 0;
 });
 
