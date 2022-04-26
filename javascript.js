@@ -3,28 +3,43 @@ const numberButtons = document.querySelectorAll('.number');
 const operatorButtons = document.querySelectorAll('.operator');
 const equalsButton = document.querySelector('.equals');
 const clear = document.querySelector('.clear');
+const display = document.querySelector('.display')
+const upperDisplay = document.querySelector('.upperDisplay');
+//
 let displayValue;
-let operation;
+let operation = null;
 let firstOperand;
-let secondOperand = 2; //need to figure out how to store next click as second operand
+let secondOperand;
 let result;
 
 //Operation functions
 function add(num1, num2) {
+    num1 = firstOperand;
+    num2 = secondOperand;
     parseFloat(num1);
     parseFloat(num2);
+    console.log('add');
     return num1 + num2;
 }
 //
 function subtract(num1, num2) {
+    num1 = firstOperand;
+    num2 = secondOperand;
+    console.log('subtract');
     return num1 - num2;
 }
 //
 function multiply(num1, num2) {
+    num1 = firstOperand;
+    num2 = secondOperand;
+    console.log('multiply');
     return num1 * num2;
 }
 //
 function divide(num1, num2) {
+    num1 = firstOperand;
+    num2 = secondOperand;
+    console.log('divide');
     return num1 / num2;
 }
 //
@@ -33,34 +48,47 @@ function operate(num1, operator, num2) {
     num1 = firstOperand;
     num2 = secondOperand;
     if (operator == '+') {
-        return add(num1, num2);
+        return result = add(num1, num2);
     } else if (operator == '-') {
-        return subtract(num1, num2);
+        return result = subtract(num1, num2);
     } else if (operator == '*') {
-        return multiply(num1, num2);
+        return result = multiply(num1, num2);
     } else {
-        return divide(num1, num2);
+        return result = divide(num1, num2);
     }
 }
 
 //Button events
 numberButtons.forEach((button) => {
     button.addEventListener('click', () => {
-        document.querySelector('.display').innerHTML = button.value;
-        firstOperand = parseFloat(button.value);
-        console.log(firstOperand);
+        if (operation !== null) {
+            secondOperand = secondOperand += button.value;
+            display.innerHTML = secondOperand;
+            console.log(secondOperand);
+        } else {
+            firstOperand = firstOperand += button.value;
+            display.innerHTML = firstOperand;
+            console.log(firstOperand)
+        };
     })
 });
 //
 operatorButtons.forEach((button) => {
     button.addEventListener('click', () => {
-        document.querySelector('.display').innerHTML = button.value;
+        display.innerHTML = button.value;
         operation = button.value;
         console.log(operation);
     })
 });
 //
-equalsButton.addEventListener('click', () => {console.log(operate())});
+equalsButton.addEventListener('click', () => {
+    operate();
+    console.log(result);
+    display.innerHTML = result;
+});
+//
+clear.addEventListener('click', () => {
+    display.innerHTML = '0';
+    upperDisplay.innerHTML = '0';
+});
 
-
-//test
