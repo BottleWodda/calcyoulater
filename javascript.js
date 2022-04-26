@@ -53,12 +53,10 @@ numberButtons.forEach((button) => {
             secondOperand.push(button.value);
             secondNumber = secondOperand.join('');
             display.innerHTML = secondNumber;
-            console.log(secondOperand);
         } else {
             firstOperand.push(button.value);
             firstNumber = firstOperand.join('');
             display.innerHTML = firstNumber;
-            console.log(firstOperand)
         };
     })
 });
@@ -67,14 +65,15 @@ operatorButtons.forEach((button) => {
     button.addEventListener('click', () => {
         display.innerHTML = button.value;
         operation = button.value;
-        console.log(operation);
     })
 });
 //
 equalsButton.addEventListener('click', () => {
     operate();
-    console.log(result);
     display.innerHTML = result;
+    secondOperand.length = 0;
+    firstNumber = result;
+    operation = null;
 });
 //
 clear.addEventListener('click', () => {
