@@ -8,68 +8,38 @@ const upperDisplay = document.querySelector('.upperDisplay');
 //
 let displayValue;
 let operation = null;
-let firstOperand;
-let secondOperand;
+let firstOperand = [];
+let firstNumber = null;
 let result;
+let totalOperation = [];
 
-//Operation functions
-function add(num1, num2) {
-    num1 = firstOperand;
-    num2 = secondOperand;
-    parseFloat(num1);
-    parseFloat(num2);
-    console.log('add');
-    return num1 + num2;
-}
+// Operation Functions
+const add = (...num) => num.reduce((a, b) => (a + b));
+const subtract = (...num) => num.reduce((a, b) => (a - b));
+const multiply = (...num) => num.reduce((a, b) => (a * b));
+const divide = (...num) => num.reduce((a, b) => (a / b));
 //
-function subtract(num1, num2) {
-    num1 = firstOperand;
-    num2 = secondOperand;
-    console.log('subtract');
-    return num1 - num2;
-}
-//
-function multiply(num1, num2) {
-    num1 = firstOperand;
-    num2 = secondOperand;
-    console.log('multiply');
-    return num1 * num2;
-}
-//
-function divide(num1, num2) {
-    num1 = firstOperand;
-    num2 = secondOperand;
-    console.log('divide');
-    return num1 / num2;
-}
-//
-function operate(num1, operator, num2) {
+function operate(...num) {
     operator = operation;
-    num1 = firstOperand;
-    num2 = secondOperand;
     if (operator == '+') {
-        return result = add(num1, num2);
+        return result = add(...num);
     } else if (operator == '-') {
-        return result = subtract(num1, num2);
+        return result = subtract(...num);
     } else if (operator == '*') {
-        return result = multiply(num1, num2);
+        return result = multiply(...num);
     } else {
-        return result = divide(num1, num2);
+        return result = divide(...num);
     }
 }
 
 //Button events
+//
 numberButtons.forEach((button) => {
     button.addEventListener('click', () => {
-        if (operation !== null) {
-            secondOperand = secondOperand += button.value;
-            display.innerHTML = secondOperand;
-            console.log(secondOperand);
-        } else {
-            firstOperand = firstOperand += button.value;
-            display.innerHTML = firstOperand;
-            console.log(firstOperand)
-        };
+        firstOperand.push(button.value);
+        firstNumber = firstOperand.join('');
+        display.innerHTML = firstNumber;
+        operation = null;
     })
 });
 //
@@ -77,18 +47,24 @@ operatorButtons.forEach((button) => {
     button.addEventListener('click', () => {
         display.innerHTML = button.value;
         operation = button.value;
-        console.log(operation);
+        totalOperation.push(firstNumber, operation)
+        firstOperand.length = 0;
     })
 });
 //
 equalsButton.addEventListener('click', () => {
-    operate();
-    console.log(result);
+    if (operation == null) {
+        totalOperation.push(firstNumber);
+    }
+    result = operate(totalOperation.join(''));
     display.innerHTML = result;
+    operation = null;
 });
 //
 clear.addEventListener('click', () => {
     display.innerHTML = '0';
     upperDisplay.innerHTML = '0';
+    operation = null;
+    firstOperand.length = 0;
+    totalOperation.length = 0;
 });
-
