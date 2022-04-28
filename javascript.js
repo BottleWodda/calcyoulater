@@ -46,8 +46,6 @@ function operate(num1, operator, num2) {
     }
 }
 
-
-
 //Button events
 numberButtons.forEach((button) => {
     button.addEventListener('click', () => {
@@ -65,8 +63,11 @@ numberButtons.forEach((button) => {
 //
 operatorButtons.forEach((button) => {
     button.addEventListener('click', () => {
-        display.innerHTML = button.value;
         operation = button.value;
+        display.innerHTML = button.value;
+        if (secondNumber !== NaN) {
+            secondOperand.length = 0;
+        }
     })
 });
 //
@@ -75,7 +76,7 @@ equalsButton.addEventListener('click', () => {
     display.innerHTML = result;
     secondOperand.length = 0;
     firstNumber = result;
-    operation = null;
+    operation = null; //could fuck shit up later
 });
 //
 clear.addEventListener('click', () => {
@@ -84,4 +85,4 @@ clear.addEventListener('click', () => {
     operation = null;
     firstOperand.length = 0;
     secondOperand.length = 0;
-});
+});        
