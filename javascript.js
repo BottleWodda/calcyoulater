@@ -52,37 +52,46 @@ numberButtons.forEach((button) => {
         if (operation !== null) {
             secondOperand.push(button.value);
             secondNumber = secondOperand.join('');
-            display.innerHTML = secondNumber;
+            display.textContent = secondNumber;
         } else {
             firstOperand.push(button.value);
             firstNumber = firstOperand.join('');
-            display.innerHTML = firstNumber;
+            display.textContent = firstNumber;
         };
     })
 });
 //
 operatorButtons.forEach((button) => {
     button.addEventListener('click', () => {
-        operation = button.value;
         display.innerHTML = button.value;
         if (secondNumber !== NaN) {
-            secondOperand.length = 0;
+            operate();
+            operation = button.value;  
+            firstNumber = result;
+            secondOperand.length = 0;           
+        } else {
+            operation = button.value;
         }
+        //if first number and second number are both valued,       
+        //operate on them and store result in firstNumber.
+        //remove value of secondNumber/secondOperand
+        //else operation = button value
     })
 });
 //
 equalsButton.addEventListener('click', () => {
     operate();
-    display.innerHTML = result;
+    display.textContent = result;
     secondOperand.length = 0;
     firstNumber = result;
-    operation = null; //could fuck shit up later
+    operation = null;
 });
 //
 clear.addEventListener('click', () => {
-    display.innerHTML = '0';
-    upperDisplay.innerHTML = '0';
+    display.textContent = '0';
+    upperDisplay.textContent = '0';
     operation = null;
     firstOperand.length = 0;
     secondOperand.length = 0;
-});        
+});
+
