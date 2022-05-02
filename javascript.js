@@ -4,7 +4,6 @@ const operatorButtons = document.querySelectorAll('.operator');
 const equalsButton = document.querySelector('.equals');
 const clear = document.querySelector('.clear');
 const display = document.querySelector('.display')
-const upperDisplay = document.querySelector('.upperDisplay');
 const backSpace = document.querySelector('#back');
 const decimal = document.querySelector('#decimalPoint');
 //
@@ -65,11 +64,12 @@ numberButtons.forEach((button) => {
 //
 operatorButtons.forEach((button) => {
     button.addEventListener('click', () => {
+        decimal.disabled = false; 
         display.textContent = button.value;
         if (secondNumber !== false) {
             operate();
             operation = button.value;  
-            firstNumber = result;
+            firstNumber = result.toFixed(8);
             secondOperand.length = 0;   
             display.textContent = result;        
         } else {
@@ -79,6 +79,7 @@ operatorButtons.forEach((button) => {
 });
 //
 equalsButton.addEventListener('click', () => {
+    decimal.disabled = false; 
     operate();
     if (secondNumber == 0 && operation == '/') {
         secondOperand.length = 0;
@@ -90,13 +91,14 @@ equalsButton.addEventListener('click', () => {
     } else {    
     display.textContent = result;
     secondOperand.length = 0;
-    firstNumber = result;
+    firstNumber = result.toFixed(8);
     operation = null;
     secondNumber = false;
     }
 });
 //
 clear.addEventListener('click', () => {
+    decimal.disabled = false; 
     display.textContent = '0';
     upperDisplay.textContent = '0';
     operation = null;
@@ -121,9 +123,11 @@ backSpace.addEventListener('click', () => {
 decimal.addEventListener('click', () => {
     if (display.textContent.includes('.')) {
         decimal.disabled = true; 
-    } else {
-        decimal.disabled = false;
-    }
-})
-
-//Keyboard Support
+    } 
+});
+//Keyboard Support... TBC
+window.addEventListener('keydown', function(e) {
+    const keys = document.querySelector(`button[data-key="${e.keyCode}"]`);
+    if(!keys) return;
+    console.log(keys);
+});
