@@ -11,7 +11,7 @@ let operation = null;
 let firstOperand = [];
 let firstNumber;
 let secondOperand = [];
-let secondNumber;
+let secondNumber = false;
 let result;
 
 //Operation functions
@@ -63,19 +63,16 @@ numberButtons.forEach((button) => {
 //
 operatorButtons.forEach((button) => {
     button.addEventListener('click', () => {
-        display.innerHTML = button.value;
-        if (secondNumber !== NaN) {
+        display.textContent = button.value;
+        if (secondNumber !== false) {
             operate();
             operation = button.value;  
             firstNumber = result;
-            secondOperand.length = 0;           
+            secondOperand.length = 0;   
+            display.textContent = result;        
         } else {
             operation = button.value;
         }
-        //if first number and second number are both valued,       
-        //operate on them and store result in firstNumber.
-        //remove value of secondNumber/secondOperand
-        //else operation = button value
     })
 });
 //
