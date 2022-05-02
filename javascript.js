@@ -5,6 +5,7 @@ const equalsButton = document.querySelector('.equals');
 const clear = document.querySelector('.clear');
 const display = document.querySelector('.display')
 const upperDisplay = document.querySelector('.upperDisplay');
+const backSpace = document.querySelector('#back');
 //
 let displayValue;
 let operation = null;
@@ -78,17 +79,32 @@ operatorButtons.forEach((button) => {
 //
 equalsButton.addEventListener('click', () => {
     operate();
+    if (secondNumber == 0 && operation == '/') {
+        secondOperand.length = 0;
+        secondNumber = false;
+        display.textContent = '>:('
+        alert("Divide by a different number. 0 was such a stupid choice.")
+    } else if (secondNumber == false) {
+        return
+    } else {    
     display.textContent = result;
     secondOperand.length = 0;
     firstNumber = result;
     operation = null;
+    secondNumber = false;
+    }
 });
 //
 clear.addEventListener('click', () => {
     display.textContent = '0';
     upperDisplay.textContent = '0';
     operation = null;
+    firstNumber = null;
+    secondNumber = false;
     firstOperand.length = 0;
     secondOperand.length = 0;
 });
-
+//
+backSpace.addEventListener('click', () => {
+    display.textContent = 'hi';
+})
