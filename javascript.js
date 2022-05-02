@@ -6,6 +6,7 @@ const clear = document.querySelector('.clear');
 const display = document.querySelector('.display')
 const upperDisplay = document.querySelector('.upperDisplay');
 const backSpace = document.querySelector('#back');
+const decimal = document.querySelector('#decimalPoint');
 //
 let displayValue;
 let operation = null;
@@ -15,7 +16,7 @@ let secondOperand = [];
 let secondNumber = false;
 let result;
 
-//Operation functions
+//Operation Functions
 function add(num1, num2) {
     return +num1 + +num2;
 }
@@ -47,7 +48,7 @@ function operate(num1, operator, num2) {
     }
 }
 
-//Button events
+//Button Events
 numberButtons.forEach((button) => {
     button.addEventListener('click', () => {
         if (operation !== null) {
@@ -106,5 +107,23 @@ clear.addEventListener('click', () => {
 });
 //
 backSpace.addEventListener('click', () => {
-    display.textContent = 'hi';
+    if (operation !== null) {
+        secondOperand.pop();
+        secondNumber = secondOperand.join('');
+        display.textContent = secondNumber;
+    } else {
+        firstOperand.pop();
+        firstNumber = firstOperand.join('');
+        display.textContent = firstNumber;
+    };
+});
+//
+decimal.addEventListener('click', () => {
+    if (display.textContent.includes('.')) {
+        decimal.disabled = true; 
+    } else {
+        decimal.disabled = false;
+    }
 })
+
+//Keyboard Support
