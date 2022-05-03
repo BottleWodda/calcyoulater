@@ -68,9 +68,9 @@ operatorButtons.forEach((button) => {
         display.textContent = button.value;
         if (secondNumber !== false) {
             operate();
+            deleteSecondNumber();  
             operation = button.value;  
-            firstNumber = result.toFixed(8);
-            secondOperand.length = 0;   
+            firstNumber = result;
             display.textContent = result;        
         } else {
             operation = button.value;
@@ -82,30 +82,25 @@ equalsButton.addEventListener('click', () => {
     decimal.disabled = false; 
     operate();
     if (secondNumber == 0 && operation == '/') {
-        secondOperand.length = 0;
-        secondNumber = false;
-        display.textContent = '>:('
-        alert("Divide by a different number. 0 was such a stupid choice.")
+        deleteSecondNumber();
+        display.textContent = '>:(';
+        alert("Divide by a different number. 0 was such a stupid choice.");
     } else if (secondNumber == false) {
         return
     } else {    
-    display.textContent = result;
-    secondOperand.length = 0;
-    firstNumber = result.toFixed(8);
-    operation = null;
-    secondNumber = false;
+        deleteSecondNumber();
+        display.textContent = result;
+        firstNumber = result;
+        operation = null;
     }
 });
 //
 clear.addEventListener('click', () => {
     decimal.disabled = false; 
     display.textContent = '0';
-    upperDisplay.textContent = '0';
     operation = null;
-    firstNumber = null;
-    secondNumber = false;
-    firstOperand.length = 0;
-    secondOperand.length = 0;
+    deleteFirstNumber(); 
+    deleteSecondNumber();
 });
 //
 backSpace.addEventListener('click', () => {
@@ -126,8 +121,15 @@ decimal.addEventListener('click', () => {
     } 
 });
 //Keyboard Support... TBC
-window.addEventListener('keydown', function(e) {
-    const keys = document.querySelector(`button[data-key="${e.keyCode}"]`);
-    if(!keys) return;
-    console.log(keys);
-});
+
+//Extra Functions
+function deleteFirstNumber() {
+    firstNumber = false;
+    firstOperand.length = 0;
+}
+//
+function deleteSecondNumber() {
+    secondOperand.length = 0;
+    secondNumber = false;
+}
+//
