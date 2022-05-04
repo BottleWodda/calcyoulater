@@ -79,6 +79,7 @@ operatorButtons.forEach((button) => {
 });
 //
 equalsButton.addEventListener('click', () => {
+    firstOperand.length = 0;
     decimal.disabled = false; 
     operate();
     if (secondNumber == 0 && operation == '/') {
