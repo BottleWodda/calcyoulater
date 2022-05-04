@@ -51,14 +51,14 @@ function operate(num1, operator, num2) {
 numberButtons.forEach((button) => {
     button.addEventListener('click', () => {
         if (operation !== null) {
-            secondOperand.push(button.value);
-            secondNumber = secondOperand.join('');
-            display.textContent = secondNumber;
-        } else {
-            firstOperand.push(button.value);
-            firstNumber = firstOperand.join('');
-            display.textContent = firstNumber;
-        };
+         secondOperand.push(button.value);
+         secondNumber = secondOperand.join('');
+         display.textContent = secondNumber;
+    } else {
+         firstOperand.push(button.value);
+         firstNumber = firstOperand.join('');
+         display.textContent = firstNumber;       
+        }
     })
 });
 //
@@ -123,6 +123,45 @@ decimal.addEventListener('click', () => {
 });
 //Keyboard Support... TBC
 
+
+
+//const clearKey = document.querySelector(`.clear[data-key="${e.keyCode}"]`);
+//const backKey = document.querySelector(`.back[data-key="${e.keyCode}"]`);
+//Numbers
+
+
+// window.addEventListener('keydown', function(e) {
+//     const numKey = document.querySelector(`.number[data-key="${e.keyCode}"]`);
+//     if (operation !== null) {
+//         secondOperand.push(numKey.value);
+//         secondNumber = secondOperand.join('');
+//         display.textContent = secondNumber;
+//     } else {
+//         firstOperand.push(numKey.value);
+//         firstNumber = firstOperand.join('');
+//         display.textContent = firstNumber;
+//         };
+// })
+// //
+// //Operators
+// window.addEventListener('keydown', function(e) {
+//     const opKey = document.querySelector(`.operator[data-key="${e.keyCode}"]`);
+//     decimal.disabled = false; 
+//     display.textContent = opKey.value;
+//     if (secondNumber !== false) {
+//         operate();
+//         deleteSecondNumber();  
+//         operation = opKey.value;  
+//         firstNumber = result;
+//         display.textContent = result;        
+//     } else {
+//         operation = opKey.value;
+//     }
+// })
+//
+//Equals
+
+
 //Extra Functions
 function deleteFirstNumber() {
     firstNumber = false;
@@ -134,3 +173,4 @@ function deleteSecondNumber() {
     secondNumber = false;
 }
 //
+
